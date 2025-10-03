@@ -5,31 +5,31 @@ amt-1	WBGene00000133
 bli-6	WBGene00000256								
 col-85	WBGene00000660								
 col-95	WBGene00000670								
-col-114	WBGene00000688								clx-1
-col-143	WBGene00000716								cpr-2
-cpr-2	WBGene00000782								fmo-2
-dhs-7	WBGene00000971								hch-1
-dhs-23	WBGene00000986								ins-35
-fat-5	WBGene00001397								fipr-23
-ftn-1	WBGene00001500								fipr-24
-grd-13	WBGene00001702								D1086.9
-gst-12	WBGene00001760								cyp-13B1
-gst-29	WBGene00001777								F08H9.4
-gst-33	WBGene00001781								F21H7.12
-ifc-1	WBGene00002055								F40G12.5
-ins-23	WBGene00002106								K03D3.2
-ins-33	WBGene00002116								cyp-14A4
-ins-35	WBGene00002118								cest-1.1
-mtl-1	WBGene00003473								fbxa-135
-nas-6	WBGene00003525								fbxa-158
-nex-4	WBGene00003591								cyp-35B2
-pgp-13	WBGene00004007								cyp-35B1
-sod-3	WBGene00004932								cpg-20
-spp-9	WBGene00004994								T08E11.1
-spp-12	WBGene00004997								ZK177.9
-sra-35	WBGene00005061								F56D6.9
-srd-16	WBGene00005094								eol-1
-srd-35	WBGene00005113								F47G4.14
+col-114	WBGene00000688							
+col-143	WBGene00000716							
+cpr-2	WBGene00000782								
+dhs-7	WBGene00000971							
+dhs-23	WBGene00000986								
+fat-5	WBGene00001397							
+ftn-1	WBGene00001500							
+grd-13	WBGene00001702							
+gst-12	WBGene00001760								
+gst-29	WBGene00001777							
+gst-33	WBGene00001781						
+ifc-1	WBGene00002055								
+ins-23	WBGene00002106								
+ins-33	WBGene00002116						
+ins-35	WBGene00002118						
+mtl-1	WBGene00003473							
+nas-6	WBGene00003525							
+nex-4	WBGene00003591							
+pgp-13	WBGene00004007						
+sod-3	WBGene00004932							
+spp-9	WBGene00004994								
+spp-12	WBGene00004997						
+sra-35	WBGene00005061						
+srd-16	WBGene00005094								
+srd-35	WBGene00005113							
 srd-49	WBGene00005127								
 srg-1	WBGene00005159								
 srg-6	WBGene00005164								
@@ -298,3 +298,4 @@ F49F1.18	WBGene00235368
 F36H5.16	WBGene00270292								
 F54D5.24	WBGene00271798								
 C52E12.11	WBGene00304189								
+
