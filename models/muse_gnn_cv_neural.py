@@ -1,7 +1,6 @@
 #muse_gnn_cv_neural
 import torch
-from utils_ver4 import cross_validate
-#from neural_models.mlp import MLP
+from utils import cross_validate
 from neural_models.muse_GNN import MuSeGNN
 import os
 import argparse
@@ -91,42 +90,6 @@ concat_input_graph = config.concat_input_graph
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.manual_seed(config.seed)
 
-'''
-if config.train_MLP:
-    mlp_experiment_name = f"MLP-num_mlp_layers_{num_mlp_layers}-num_folds_{num_folds}" \
-                          f"-lr_{learning_rate}-weight_decay_{weight_decay}-bs_{batch_size}" \
-                          f"-epochs_{epochs}-eval_every_{eval_model_every}-dropout_{config.dropout}" \
-                          f"-aging_genes_only_{aging_genes_only}" \
-                          f"-mlp_hidden_dim_{mlp_hidden_dim}-mixsplit_{mixsplit}-seed_{seed}-data_{data}"
-    if not (os.path.exists(f"./results/neural/{mlp_experiment_name}/best_model_stats.txt")):
-        print('Running cross validate with pure MLP')
-        print(f"Creating folder {mlp_experiment_name}")
-        dataset = load_data(config)
-
-        train_test_dataset_list = load_train_test_datasets(dataset)
-        X_train, labels_train, experiments_train = train_test_dataset_list[0]
-
-        num_genes = get_num_genes(dataset)
-        # add one to input for age
-        MLP = MLP(num_genes + 1, config.mlp_hidden_dim, 3, config.num_mlp_layers,
-                  dropout=config.dropout).to(device) # num_genes +1 (나이 특성을 추가하기 위해 +1) , 출력 :3(long, short, normal lived)
-        # mlp.py
-
-        if mixsplit:
-             results = cross_validate(MLP, X_train, labels_train, device, config, experiments_train,
-                           mlp_experiment_name, num_folds, learning_rate, batch_size, weight_decay, epochs, True)
-        else:
-             results = cross_validate(MLP, X_train, labels_train, device, config, experiments_train,
-                           mlp_experiment_name, num_folds, learning_rate, batch_size, weight_decay, epochs)
-        
-        if results is None or len(results) == 0:
-            print("Error: cross_validate did not return any results.")
-            exit(1)
-
-        # Cross-validation 결과 처리 및 CSI 계산은 utils.py의 cross_validate 내부에서 수행
-        print("Cross-validation completed. Results saved.")
-'''
-        
 
 if config.train_GNN:
     muse_gnn_experiment_name = f"ver4_MuSeGNN-bblayers_{num_backbone_layers}-nchannels_{backbone_channels}-folds_{num_folds}" \
@@ -143,23 +106,23 @@ if config.train_GNN:
         print('Running cross-validation with MuSe-GNN')
 
         MuSeGNN_model = MuSeGNN(
-            input_dim=1,  # 입력 노드 특성 차원
-            backbone_channels=config.backbone_channels,  # 히든 채널
-            output_dim=3,  # 출력 클래스 수
-            num_backbone_layers=config.num_backbone_layers,  # GNN 백본 계층 수
-            concat_input_graph=config.concat_input_graph,  # 입력 그래프 통합 여부
-            num_nodes=num_genes,  # 그래프의 노드 수
-            edge_attr=pre_expression_merge_graph.edge_attr,  # 엣지 속성
-            edge_index=pre_expression_merge_graph.edge_index,  # 엣지 인덱스
-            k=config.k,  # 풀링 크기
-            mlp_hidden_dim=config.mlp_hidden_dim,  # MLP 히든 크기
-            mlp_num_layers=config.num_mlp_layers,  # MLP 계층 수
-            dropout=config.dropout,  # 드롭아웃 비율
-            device=device # 디바이스 (CPU/GPU)
+            input_dim=1, 
+            backbone_channels=config.backbone_channels,  
+            output_dim=3,  
+            num_backbone_layers=config.num_backbone_layers, 
+            concat_input_graph=config.concat_input_graph,  
+            num_nodes=num_genes,  
+            edge_attr=pre_expression_merge_graph.edge_attr,  
+            edge_index=pre_expression_merge_graph.edge_index,  
+            k=config.k,
+            mlp_hidden_dim=config.mlp_hidden_dim,  
+            mlp_num_layers=config.num_mlp_layers, 
+            dropout=config.dropout, 
+            device=device 
         ).to(device)
 
 
-        # Cross-validation 수행
+        # Cross-validation 
         cross_validate(
             MuSeGNN_model,
             train_gene_expression_graphs,
@@ -175,3 +138,4 @@ if config.train_GNN:
             epochs
         )
         
+
