@@ -100,7 +100,7 @@ To run:
 bash mlp_runs.sh
 ```
 
-Example (inside the script):
+Example :
 
 ```bash
 python3 cv_neural.py \
