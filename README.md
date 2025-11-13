@@ -4,8 +4,8 @@ It contains the metadata, scripts and  model-ready demo dataset
 used in the study : < 논문제목 > 
 
 
-The full processed gene expression matrix
-('getmm_combat_seq_no_outliers_and_singles_gene_expression.csv')
+The full gene expression matrix
+(`getmm_combat_seq_no_outliers_and_singles_gene_expression.csv`)
 is not included due to file size restrictions.  
 However, metadata, scripts, and execution-ready demo dataset are 
 provided, allowing users   
