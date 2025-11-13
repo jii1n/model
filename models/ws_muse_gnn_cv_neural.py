@@ -90,7 +90,7 @@ if config.train_GNN:
                                f"-epchs_{epochs}-evalevery_{eval_model_every}-dpout_{config.dropout}" \
                                f"-mlpdim_{mlp_hidden_dim}-mlplayers_{num_mlp_layers}"
 
-    if not (os.path.exists(f"/data/bi1/results/neural/{muse_gnn_experiment_name}/best_model_stats.txt")):
+    if not (os.path.exists(f"./results/neural/{muse_gnn_experiment_name}/best_model_stats.txt")):
         dataset, gene_expression_graphs, pre_expression_merge_graph = load_data(config)
         train_test_dataset_list = load_train_test_datasets(dataset, gene_expression_graphs)
         train_gene_expression_graphs, labels_train, experiments_train = train_test_dataset_list[0]
@@ -131,5 +131,6 @@ if config.train_GNN:
             epochs
         )
         
+
 
 
