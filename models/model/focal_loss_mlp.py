@@ -1,4 +1,4 @@
-# fecal_loss_mlp
+# focal_loss_mlp
 
 from torch.nn import Sequential as Seq, Linear as Lin
 from torch.nn import Module  
@@ -56,14 +56,6 @@ class MLP(Seq):
 
 
     def loss(self, pred, label):
-        """
-        Focal Loss로 손실 계산
-        Args:
-            pred: 모델의 예측값 (logits)
-            label: 실제 라벨 (one-hot encoded)
-        Returns:
-            Focal Loss 값
-        """
         return self.focal_loss(pred, label)
 
     def weight_reset(self, m):
@@ -73,4 +65,5 @@ class MLP(Seq):
     def forward(self, x):
         for module in self.layers:
             x = module(x)
+
         return x
