@@ -87,7 +87,7 @@ Produces:
 ```
 getmm_combat_seq_no_outliers_and_singles_gene_expression.csv
 combat_seq_gene_expression_no_outliers_and_singles.Rdata
-getmm_gene_expression_no_outliers.csv
+etc
 ```
 
 ## 🚀 3. Running the Machine Learning Model
