@@ -11,24 +11,16 @@ from sklearn.metrics import confusion_matrix
 import numpy as np
 
 
-# Gene Expression settings
-# Options:
-# getmm_gene_expression_no_outliers.csv for getmm, no outliers
-# getmm_combat_seq_no_outliers_and_singles_gene_expression.csv for getmm, combat-seq, no singles, no outliers
-# combat_seq_age_corrected_getmm_gene_expression_no_outliers.csv
-# combat_seq_age_corrected_day_1_and_older_getmm_gene_expression_no_outliers.csv
-# combat_seq_age_corrected_L4_and_younger_getmm_gene_expression_no_outliers.csv
-# combat_seq_getmm_GO_filtered_gene_expression_no_singles_and_outliers.csv
 parser.add_argument('--expression_path', type=str,
-                    default="../common_datastore/getmm_combat_seq_no_outliers_and_singles_gene_expression.csv",
+                    default="../data/getmm_combat_seq_no_outliers_and_singles_gene_expression.csv",
                     help='path to gene expression data '
-                         '(default: ../common_datastore/getmm_combat_seq_no_outliers_and_singles_gene_expression.csv)')
+                         '(default: ../data/getmm_combat_seq_no_outliers_and_singles_gene_expression.csv)')
 parser.add_argument('--label_path', type=str, default="../common_datastore/labels.csv",
-                    help='path to labels (default: ../common_datastore/labels.csv)')
-parser.add_argument('--age_path', type=str, default="../common_datastore/age.csv",
-                    help='path to age data (default: ../common_datastore/age.csv)')
-parser.add_argument('--experiments_path', type=str, default="../common_datastore/sra_to_bioproject.csv",
-                    help='path to sra to bioproject mapping (default: ../common_datastore/sra_to_bioproject.csv)')
+                    help='path to labels (default: ../data/labels.csv)')
+parser.add_argument('--age_path', type=str, default="../data/age.csv",
+                    help='path to age data (default: ../data/age.csv)')
+parser.add_argument('--experiments_path', type=str, default="../data/sra_to_bioproject.csv",
+                    help='path to sra to bioproject mapping (default: ../data/sra_to_bioproject.csv)')
 # MLP parameters
 parser.add_argument('--mlp_hidden_dim', type=int, default=512,
                     help='embedding dimensions (default: 512)')
@@ -47,20 +39,20 @@ parser.add_argument('--epochs', type=int, default=100,
                     help='num training epochs (default: 100)')
 parser.add_argument('--seed', type=int, default=42, help="Seed")
 parser.add_argument('--eval_model_every', type=int, default=10,
-                    help="how often (in # of epochs) to evaluate the model (default: 10)") # 10epoch 진행될 때마다 검증 수행 
+                    help="how often (in # of epochs) to evaluate the model (default: 10)") 
 parser.add_argument('--train_MLP', action='store_true', help="train the pure MLP (default: False)")
-parser.add_argument('--mixsplit', action='store_true', help="perform a mixsplit as described in paper (default: False)") # 기본: non - mixsplit
-parser.add_argument('--num_folds', type=int, default=10, help="How many folds for cross validation (default: 10)") # 교차 검증시 10 folds
+parser.add_argument('--mixsplit', action='store_true', help="perform a mixsplit as described in paper (default: False)") 
+parser.add_argument('--num_folds', type=int, default=10, help="How many folds for cross validation (default: 10)")
 # Data Filtering
 parser.add_argument('--aging_genes_only', action='store_true',
-                    help="train the model using aging genes only (default: False)") #노화 관련 유전자만 사용하여 모델 학습 
+                    help="train the model using aging genes only (default: False)") 
 # GNN parameters
-parser.add_argument('--k', type=int, default=22113, help="Number of nodes to keep after Sort Pooling (default: 22113)") # sort pooling 이후 유지할 노드의 수 설정 
-parser.add_argument('--num_backbone_layers', type=int, default=1, help="Number of GNN backbone layers (default 1)") # backbone layer 수
+parser.add_argument('--k', type=int, default=22113, help="Number of nodes to keep after Sort Pooling (default: 22113)") 
+parser.add_argument('--num_backbone_layers', type=int, default=1, help="Number of GNN backbone layers (default 1)") 
 parser.add_argument('--backbone_channels', type=int, default=1,
                     help="Number of backbone features / channels (default: 1)")
 parser.add_argument('--concat_input_graph', action='store_true',
-                    help="Concatenate input graph features (default: True)") # 입력 그래프의 특징을 모델 출력과 결합할지 
+                    help="Concatenate input graph features (default: True)") 
 parser.add_argument('--train_GNN', action='store_true', help="train the pure GNN (default: False)")
 parser.add_argument('--test-mode', action='store_true', help="Run script in test mode without training")
 
@@ -107,8 +99,7 @@ if config.train_MLP:
         num_genes = get_num_genes(dataset)
         # add one to input for age
         MLP = MLP(num_genes + 1, config.mlp_hidden_dim, 3, config.num_mlp_layers,
-                  dropout=config.dropout).to(device) # num_genes +1 (나이 특성을 추가하기 위해 +1) , 출력 :3(long, short, normal lived)
-        # mlp.py
+                  dropout=config.dropout).to(device) 
 
         if mixsplit:
              results = cross_validate(MLP, X_train, labels_train, device, config, experiments_train,
@@ -121,7 +112,6 @@ if config.train_MLP:
             print("Error: cross_validate did not return any results.")
             exit(1)
 
-        # Cross-validation 결과 처리 및 CSI 계산은 utils.py의 cross_validate 내부에서 수행
         print("Cross-validation completed. Results saved.")
 
         
