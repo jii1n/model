@@ -39,7 +39,7 @@ to:
 ```
 
 
-## 🧪 Method 1. Execution-ready Demo Dataset 
+## Execution-ready Demo Dataset 
 
 To run the ML models without downloading FASTQ files, 
 
@@ -54,7 +54,7 @@ python3 cv_neural.py \
 This dataset preserves the exact data structure expected by the ML pipeline.
 
 
-## 🔧 Method 2. How to Reproduce the Full Expression Matrix
+## Reproducing the Full Expression Matrix
 
 The full expression matrix can be regenerated from public SRA data using the  
 steps below. All required metadata and processing scripts are included.
@@ -89,7 +89,7 @@ getmm_combat_seq_no_outliers_and_singles_gene_expression.csv
 combat_seq_gene_expression_no_outliers_and_singles.Rdata
 ```
 
-## 🚀 3. Running the Machine Learning Model
+## Running the Machine Learning Model
 
 A ready-to-use shell script (`mlp_runs.sh`, `focla_loss_mlp.sh`, `gnn_runs.sh`, `ws_muse_gnn_runs.sh`) is provided to execute the ML
 pipeline.
